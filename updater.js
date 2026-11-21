@@ -1,5 +1,5 @@
 /* Versi web (PWA): pengganti updater APK. Pembaruan diambil otomatis lewat service worker. */
-const D = document, BUILD = 105;
+const D = document, BUILD = 107;
 const cur = () => { const e = D.getElementById('app-version-label'); return e ? e.textContent.trim() : ''; };
 const css = D.createElement('style');
 css.textContent = `.up-ov{position:fixed;inset:0;z-index:9996;background:rgba(15,23,42,.6);display:flex;align-items:flex-end;justify-content:center}
