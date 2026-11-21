@@ -1,7 +1,7 @@
 /* Sahabatku Driver Manajemen — Service Worker
    Setiap kali Anda mengganti file di GitHub, naikkan VERSION di bawah ini
    (contoh 'v104.2') supaya semua pengguna otomatis dapat pembaruan. */
-const VERSION = 'v105.1';
+const VERSION = 'v107.1';
 const CACHE = 'sahabatku-' + VERSION;
 const RUNTIME = 'sahabatku-runtime';
 
