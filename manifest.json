@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "Sahabatku Driver Manajemen",
+  "short_name": "Sahabatku",
+  "description": "Aplikasi absensi & operasional kurir Sahabatku Delivery",
+  "lang": "id",
+  "dir": "ltr",
+  "start_url": "./index.html?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#0180F7",
+  "theme_color": "#0180F7",
+  "categories": ["business", "productivity"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

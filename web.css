@@ -1,0 +1,68 @@
+/* Penyesuaian versi web: iOS/Android lama, PWA, dan tampilan PC/laptop. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overscroll-behavior-y:none}
+img{-webkit-user-drag:none}
+button,[role=button],a,label,select{touch-action:manipulation}
+
+/* iOS: cegah zoom otomatis saat mengetik di kolom isian */
+html.is-ios input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]),
+html.is-ios select,html.is-ios textarea{font-size:16px!important}
+/* iOS: tinggi layar penuh yang benar (bar alamat Safari) */
+html.is-ios .screen{min-height:-webkit-fill-available}
+/* Mode aplikasi terpasang: hormati area aman (poni / home indicator) */
+html.is-standalone body{padding-top:env(safe-area-inset-top);padding-bottom:0}
+
+/* Fallback untuk iOS < 16.2 / browser tanpa color-mix() */
+@supports not (color:color-mix(in oklab,red,blue)){
+  .login-card{background:var(--shbt-surface)!important}
+  .login-input-wrap input[type=text],.login-input-wrap input[type=password]{background:var(--shbt-bg)!important}
+  .screen input:not([type=checkbox]):not([type=radio]),.screen select,.screen textarea{background:var(--shbt-surface)!important}
+  #global-nav{background:var(--shbt-surface)!important}
+  .screen table thead th{background:var(--shbt-surface)}
+  .screen .text-center.text-xs.text-slate-400{background:transparent}
+}
+
+/* Perangkat sangat ringan / hemat data */
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ===================== PC / LAPTOP ===================== */
+@media (min-width:1024px) and (hover:hover) and (pointer:fine){
+  body{--sd-rail:232px}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:rgba(100,116,139,.35);border-radius:10px;border:2px solid transparent;background-clip:content-box}
+  ::-webkit-scrollbar-thumb:hover{background:rgba(100,116,139,.6);background-clip:content-box;border:2px solid transparent}
+  button,[onclick],.pm-menu-card,.sd-nav-i{cursor:pointer}
+
+  /* konten lebih lebar */
+  html body .screen.active:not(#screen-login)>*:not(.fixed):not([class*=fixed]){max-width:1040px!important}
+  html body .screen.sd-screen.active{padding:28px 32px 40px!important}
+  html body .screen.active:not(#screen-login){padding-bottom:40px}
+  /* login: kartu di tengah layar */
+  #screen-login.active{justify-content:center!important;align-items:center;padding:24px}
+  #screen-login.active>*:not(.absolute){max-width:440px!important;width:100%}
+  #screen-login .login-card{border-radius:28px!important;margin-top:8px;box-shadow:0 30px 80px rgba(2,12,40,.35)}
+  html body .pm-body{padding:6px 32px 40px;max-width:1080px;margin:0 auto}
+  html body .pm-header{max-width:1016px;margin-left:auto;margin-right:auto}
+  html body .pm-menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  html body .pm-menu-grid .pm-menu-card{border-top:0;border-bottom:1px solid var(--sd-line)}
+
+  /* menu bawah → sidebar kiri */
+  #global-nav.sd-nav{top:0;bottom:0;left:0;right:auto;width:var(--sd-rail);padding:20px 12px!important;border-top:0!important;border-right:1px solid var(--sd-line,#e2e8f0)!important;display:flex;flex-direction:column;overflow-y:auto}
+  #global-nav.sd-nav.hidden{display:none!important}
+  #global-nav.sd-nav:before{content:"Sahabatku";display:block;font-weight:800;font-size:18px;letter-spacing:-.01em;padding:6px 8px 6px 52px;margin:0 0 18px;height:44px;line-height:32px;background:url(icon-192.png) no-repeat 0 0/44px 44px;color:var(--sd-text,#0f172a)}
+  .sd-nav-in{display:flex!important;flex-direction:column;gap:4px;max-width:none!important;margin:0!important}
+  .sd-nav-i{flex-direction:row!important;justify-content:flex-start!important;height:46px!important;padding:0 14px;gap:12px!important;font-size:14px!important;border-radius:12px;transition:background .15s}
+  .sd-nav-i:hover{background:var(--sd-tile,rgba(37,99,235,.08))}
+  .sd-nav-i.on{background:var(--sd-tile,rgba(37,99,235,.1))}
+  .sd-nav-i.on:before{top:10px!important;bottom:10px;left:0!important;width:3px!important;height:auto!important;margin:0!important;border-radius:0 3px 3px 0!important}
+  /* geser area konten saat sidebar tampil */
+  body:has(#global-nav.sd-nav:not(.hidden)) main,
+  body:has(#global-nav.sd-nav:not(.hidden)) #app-bar{margin-left:var(--sd-rail)}
+  body:has(#global-nav.sd-nav:not(.hidden)) .up-ov{padding-left:var(--sd-rail)}
+
+  /* kartu popup tampil di tengah, bukan menempel ke bawah */
+  .pwa-card{bottom:24px}
+}
+@media (min-width:1500px) and (hover:hover) and (pointer:fine){
+  html body .screen.active:not(#screen-login)>*:not(.fixed):not([class*=fixed]){max-width:1180px!important}
+}
